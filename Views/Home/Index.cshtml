@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+        <style>
+        body, html {
+        height: 100%;
+        }
+        .bg {
+        /* The image used */
+        background-image: url("https://leaguere.com/wp-content/uploads/2018/06/The-Foundry-District-Fort-Worth.jpg");
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
+       
+        .navbar-fixed{
+            position: absolute;z-index:999999999;
+        }
+
+        .form-inline {
+            padding-top: 20%;
+            width: 30%;
+            margin-left: 35%;
+  
+        }
+
+        .search{
+            background-color: transparent;
+            border: transparent;
+            float: right;
+        }
+
+        </style>
+
+</head>
+<body>
+<div class="bg">
+<div class="navbar-fixed">
+  <nav class="transparent z-depth-0">
+    <div class="nav-wrapper">
+      <div class="row">
+        <div class="col s12">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/login" target="_blank">Login</a></li>
+            <li><a href="/signup" target="_blank">Signup</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<form class="form-inline mx-auto">
+    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <button class="search" type="submit"><i class="material-icons">search</i></button>
+</form>
+
+
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>

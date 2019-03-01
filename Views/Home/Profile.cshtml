@@ -1,0 +1,249 @@
+@using Microsoft.AspNetCore.Http;
+
+@model User
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+    
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+         <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+        <script>
+            $( document ).ready(function() {
+                console.log("HERE");
+                $(".dropdown-trigger").dropdown();
+            });
+
+            </script>
+
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+        <style>
+            .nav-wrapper {
+                background-color:#ebdfdb;
+            }
+            .brand-logo {
+                margin-left: 30px;
+            }
+
+            .img-responsive{
+                /* border: 2px pink solid; */
+                height: 300px;
+                width: 300px;
+                margin-top: 20px;
+                margin-right: 100px;
+                display: inline-block;
+                position: absolute;
+                margin-left: 3%;
+                margin-top: 3%;
+                border-radius: 50%;
+            }
+            .users_nav {
+                /* border: 2px green solid; */
+                height: 300px;
+                width: 350px;
+                margin-top: 20px;
+                margin-right: 5%;
+                display: inline-block;
+                text-align: center;
+                vertical-align: top;
+                margin-left: 2%;
+                
+            }
+            .button1 {
+                margin-top: 30%;
+                padding: 2%;
+                background-color: transparent;
+                border-radius: 30px;
+            }
+            .button2 {
+                padding: 2%;
+                background-color: transparent;
+                border-radius: 30px;
+                margin-top: 10px;
+            }
+
+
+            .usrs_info {
+                /* border: 1px red solid; */
+                height: 200px;
+                width: 100%;
+                margin-top: 20px;
+                display: inline-block;
+                vertical-align: top;
+                text-align: center;
+                background-color: #fafafa;
+                background-image: url("https://www.transparenttextures.com/patterns/climpek.png");
+            
+
+            }
+            .all_reviews {
+               /* border: 1px purple solid; */
+                height: 400px;
+                width: 40%;
+                display: inline-block;
+                vertical-align: top;
+                text-align: center;
+                overflow: scroll;
+            }
+            .img {
+                width: 70px;
+                height: 70px;
+                border-radius: 20%;
+            }
+            .about_user {
+                /* border: 1px plum solid; */
+                display: inline-block;
+                width: 20%;
+                height: 400px;
+                float: right;
+              
+            }
+            h6 {
+                text-align: center;
+                display: inline-block;
+            }
+            h5 {
+                display: inline-block;
+            }
+
+            .vl {
+                border-left: 1px solid #e7e7e7;
+                height: 20%;
+                position: absolute;
+                left: 70%;
+                margin-left: -3px;
+                top: 15%;
+            }
+            .add_photo {
+                margin-left: 70%;
+                width: 30%;
+                border: 1px palegreen solid;
+                display: inline-block;
+                vertical-align: top;                
+            }
+        </style>
+        
+</head>
+<body>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+    <li><a href="/profile">Me</a></li>
+    <li class="divider"></li>
+    <li><a href="/addplace">Add</a></li>
+    <li class="divider"></li>
+    <li><a href="/settings">Setting</a></li>
+    <li class="divider"></li>
+    <li><a href="/logout">Logout</a></li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <span class="brand-logo">InstaWorthy</span>
+            <ul class="right hide-on-med-and-down">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">apps</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="container_grid">
+   
+        <div class="users_profile">
+            <img src="@ViewBag.returnUser[0].ProfileUrl" class="img-responsive">
+        </div>
+
+        <div class="usrs_info">
+            <span class="user_info_text">
+            <h5>@Context.Session.GetString("Name")</h5> 
+                <br>
+            <h6>Location: @ViewBag.returnUser[0].Location </h6> 
+                <br>
+
+            <!-- <h6>
+            <i class="material-icons">star</i> PLACEHOLDER
+            </h6> -->
+
+            </span>
+            <div class="vl"></div>
+
+            <!-- <div class="add_photo">
+              <span>Add Profile Photo   
+                <i class="1rem material-icons">photo_camera</i>
+              </span> 
+            </div> -->
+
+        </div>
+    </div>
+
+
+    <div class="users_nav">
+
+        <a href="profile"><button class="button1">Profile Overview</button> </a>
+        <br>
+        <a href="userreviews"><button class="button2">Reviews</button></a>
+    
+    </div>
+
+
+    <div class="all_reviews col s12 m4 l8">
+        <h4>My recent Activity</h4>
+
+      <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        <tbody>
+            @{
+                for(var i = 0; i < @ViewBag.allPlaces.Count; i++)
+                {
+                    if(@ViewBag.allPlaces[i].UserId == @Context.Session.GetInt32("id"))
+                    {
+                    <tr>
+                        <td>
+                            <a href="/place/@ViewBag.allPlaces[i].PlaceId">
+                                <img src="@ViewBag.allPlaces[i].PicUrl" class="img">
+                            </a>
+                        </td>
+
+                        <td>
+                            You wrote a review for @ViewBag.allPlaces[i].Name
+                        </td>
+                    </tr>
+                    }
+                }
+            }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="about_user">
+        <h6>About: @Context.Session.GetString("Name")</h6>
+
+        <p> 
+            <strong>Location</strong> <br>
+            @ViewBag.returnUser[0].Location
+
+        </p>
+
+        <p> 
+            <strong> IgWorthy'ing Since</strong> <br>
+            @ViewBag.returnUser[0].Created_at
+        </p>
+    </div>
+    
+</div>
+
+</body>
+</html>
